@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: data-platform-api-usage-control-chain-creates-rmq-kube
+  name: data-platform-api-usage-control-chain-creates-rmq-kube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: data-platform-api-usage-control-chain-creates-rmq-kube
+      app: USAGE_CONTROL_CHAIN
+  template:
+    metadata:
+      labels:
+        run: data-platform-api-usage-control-chain-creates-rmq-kube
+        app: USAGE_CONTROL_CHAIN
+    spec:
+      hostname: data-platform-api-usage-control-chain-creates-rmq-kube
+      containers:
+        - name: data-platform-api-usage-control-chain-creates-rmq-kube
+          image: latonaio/data-platform-api-usage-control-chain-creates-rmq-kube
+          imagePullPolicy: Always
+          env:
+            - name: "RMQ_QUEUE_FROM"
+              value: "data-platform-api-usage-control-chain-creates-queue"
+            - name: "RMQ_QUEUE_TO_SQL"
+              value: "sql-update-kube"
+            - name: "RMQ_QUEUE_TO_EX_CONF"
+              value: ""
+            - name: "RMQ_QUEUE_TO_SUB_FUNC"
+              value: ""
+            - name: "RMQ_SESSION_CONTROL_QUEUE"
+              value: "data-platform-api-usage-control-chain-creates-session-control-queue"
+            - name: "MYSQL_DB_NAME"
+              value: "DataPlatformCommonSettingsMysqlKube"
+          envFrom:
+            - configMapRef:
+                name: env-config
+            - secretRef:
+                name: env-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: data-platform-api-usage-control-chain-creates-rmq-kube
+  name: data-platform-api-usage-control-chain-creates-rmq-kube
+spec:
+  selector:
+    run: data-platform-api-usage-control-chain-creates-rmq-kube
+  type: NodePort
+  ports:
+    - name: api
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30748
