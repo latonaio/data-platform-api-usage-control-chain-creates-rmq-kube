@@ -11,10 +11,10 @@
   "UsageControl": {
     "UsageControlChain": "UsageControlChain_Dummy_value_001",
     "UsageControlLess": null,
-    "Perpetual": true,
+    "Perpetual": null,
     "Rental": null,
     "Duration": null,
-    "DurationUnit": "",
+    "DurationUnit": "CS",
     "ValidityStartDate": "",
     "ValidityStartTime": "",
     "ValidityEndDate": "",
@@ -46,8 +46,9 @@
     "ModifyIsAllowed": null,
     "LocalLoggingIsAllowed": null,
     "RemoteNotificationIsAllowed": null,
-    "DestributeOnlyIfEncrypted": null,
-    "AttachPolicyWhenDestribute": null
+    "DistributeOnlyIfEncrypted": null,
+    "AttachPolicyWhenDistribute": null,
+    "IsMarkedForDeletion": false
   },
   "OrdersInputParameters": {
     "ReferenceDocument": null,

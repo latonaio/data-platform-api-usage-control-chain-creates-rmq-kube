@@ -96,14 +96,15 @@ type UsageControlChain struct {
 	BusinessPartnerRoleRestriction []*string           `json:"BusinessPartnerRoleRestriction"`
 	DataStateRestriction           []*string           `json:"DataStateRestriction"`
 	NumberOfUsageRestriction       *int                `json:"NumberOfUsageRestriction"`
-	NumberOfActuaUsage             *int                `json:"NumberOfActuaUsage"`
+	NumberOfActualUsage            *int                `json:"NumberOfActualUsage"`
 	IPAddressRestriction           []*string           `json:"IPAddressRestriction"`
 	MACAddressRestriction          []*string           `json:"MACAddressRestriction"`
 	ModifyIsAllowed                *bool               `json:"ModifyIsAllowed"`
 	LocationRestriction            LocationRestriction `json:"LocationRestriction"`
 	LocalLoggingIsAllowed          *bool               `json:"LocalLoggingIsAllowed"`
 	RemoteNotificationIsAllowed    *string             `json:"RemoteNotificationIsAllowed"`
-	DestributeOnlyIfEncrypted      *bool               `json:"DestributeOnlyIfEncrypted"`
+	DistributeOnlyIfEncrypted      *bool               `json:"DistributeOnlyIfEncrypted"`
+	AttachPolicyWhenDistribute     *bool    		   `json:"AttachPolicyWhenDistribute"`
 	PostalCode                     []*string           `json:"PostalCode"`
 	LocalSubRegion                 []*string           `json:"LocalSubRegion"`
 	LocalRegion                    []*string           `json:"LocalRegion"`
